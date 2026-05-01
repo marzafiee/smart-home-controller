@@ -54,7 +54,7 @@ public class SmartHomeApplication {
         SmartDevice kitchenLight = controller.addDevice("LIGHT", "Kitchen Light", kitchen);
         SmartDevice thermostat = controller.addDevice("THERMOSTAT", "Main Thermostat", livingRoom);
         SmartDevice frontDoor = controller.addDevice("DOOR", "Front Door", entryway);
-        SmartDevice backDoor = controller.addDevice("DOOR", "Back Door", entryway);
+        // SmartDevice backDoor = controller.addDevice("DOOR", "Back Door", entryway);
         SmartDevice bedroomAC = controller.addDevice("AC", "Bedroom AC", bedroom);
 
         // this try/catch checks what happens if someone gives a wrong device type
@@ -76,7 +76,7 @@ public class SmartHomeApplication {
         bedroomAC.turnOn();
 
         // decorator: adding extra behavior around a device at runtime
-        separator("4. DECORATOR — adding motion detection + energy monitoring at runtime");
+        separator("4. DECORATOR for adding motion detection + energy monitoring at runtime");
 
         // this wraps a light so it can react to motion
         MotionSensorDecorator motionKitchenLight = new MotionSensorDecorator(
@@ -108,14 +108,14 @@ public class SmartHomeApplication {
         System.out.println(doubleDecorated.getStatus());
 
         // room-level action: this should switch off everything in kitchen
-        separator("Room-Level Control — turn off entire kitchen");
+        separator("Room-Level Control: turn off entire kitchen");
         kitchen.turnAllOff();
 
         // checking a full status snapshot after the room command
         controller.printAllStatus();
 
         // strategy: changing mode objects to apply different automation rules
-        separator("5. STRATEGY — Automation Modes");
+        separator("5. STRATEGY: Automation Modes");
 
         System.out.println("Current state before Night Mode:");
         controller.printAllStatus();
@@ -128,7 +128,7 @@ public class SmartHomeApplication {
         controller.activateMode(new MorningModeStrategy());
         controller.printAllStatus();
 
-        // third mode: vacation
+        // third mode: vacation :))
         controller.activateMode(new VacationModeStrategy());
         controller.printAllStatus();
 
@@ -143,8 +143,6 @@ public class SmartHomeApplication {
 
     /** helper method that prints each section title. */
     private static void separator(String title) {
-        System.out.println("\n═══════════════════════════════════════════════════");
-        System.out.printf("║  %-52s║%n", title);
-        System.out.println("═══════════════════════════════════════════════════");
+        System.out.printf("%-52s║%n", title);
     }
 }
